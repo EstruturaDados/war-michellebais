@@ -152,36 +152,44 @@ int main() {
     //Iniciando as jogadas
     printf("Iniciando o modo caos... que comecem as batalhas!!!\n\n");
     batalha(t, qtdterritorios);
+    
+    int menu = 1;
+    while (menu) {
+        printf("\nO que você escolhe agora?\n");
+        printf("1 - Continuar\n");
+        printf("2 - Mostrar mapa\n");
+        printf("0 - Sair do jogo\n");
+        printf("Digite sua opção:  ");
+        scanf("%d", &escolha);
+        limparBufferEntrada();
 
-    printf("\nO que você escolhe agora?\n");
-    printf("1 - Continuar\n");
-    printf("2 - Mostrar mapa\n");
-    printf("0 - Sair do jogo\n");
-    printf("Digite sua opção:  ");
-    scanf("%d", &escolha);
-    limparBufferEntrada();
+        switch (escolha) {
+            case 1:
+                batalha(t, qtdterritorios);
+                break;
 
-    switch (escolha) {
-        case 1:
-            batalha(t, qtdterritorios);
-        break;
+            case 2:
+                exibirMapa(t, qtdterritorios);
+                break;
 
-        case 2:
-            exibirMapa(t, qtdterritorios);
-        break;
-
-        case 3:
-            printf("Ok! espero te ver em breve!\n");
-            exit(1);
-        break;
-        default:
-            break;
-    }
+            case 0:
+                printf("\nOk! espero te ver em breve!\n");
+                menu = 0;
+                break;
+        
+            default:
+                printf("Opção inválida!\n");   
+                break;
+        };
+    };
 
     //Liberando o espaço alocado
+
     free(t);
-    printf("Memoria de mapa liberada!!!\n");
-    printf("Etapa finalizada!\n");
+
+    printf("\n...Memoria liberada!!!\n");
+
+    printf("\nEtapa finalizada!\n");
 
     return 0;
 };
